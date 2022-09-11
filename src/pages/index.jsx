@@ -43,7 +43,7 @@ const Index = () => {
   const changeByItem = (item, name, func) => {
     scrollToMap();
     setActivity(filterAndSortRuns(activities, item, func, sortDateFunc));
-    setTitle(`${item} ${name} Running Heatmap`);
+    setTitle(`${item} ${name} Riding Heatmap`);
     setRunIndex(-1);
   };
 

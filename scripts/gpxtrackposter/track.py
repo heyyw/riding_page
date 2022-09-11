@@ -225,7 +225,7 @@ class Track:
     def to_namedtuple(self):
         d = {
             "id": self.run_id,
-            "name": "run from gpx",  # maybe change later
+            "name": "ride from gpx",  # maybe change later
             "type": "Run",  # Run for now only support run for now maybe change later
             "start_date": self.start_time.strftime("%Y-%m-%d %H:%M:%S"),
             "end": self.end_time.strftime("%Y-%m-%d %H:%M:%S"),

@@ -36,10 +36,10 @@ const RunRow = ({ runs, run, locateActivity, runIndex, setRunIndex }) => {
     >
       <td>{titleForRun(run)}</td>
       <td>{distance}</td>
-      {pace && <td>{paceParts}</td>}
-      <td>{heartRate && heartRate.toFixed(0)}</td>
+      {pace && <td>{(pace * 3.6).toFixed(2)}km/h</td>}
+      {/* <td>{heartRate && heartRate.toFixed(0)}</td> */}
       <td>{runTime}</td>
-      <td className={styles.runDate}>{run.start_date_local}</td>
+      <td className={styles.runDate}>{run.start_date}</td>
     </tr>
   );
 };

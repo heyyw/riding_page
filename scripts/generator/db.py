@@ -61,7 +61,7 @@ class Activity(Base):
         for key in ACTIVITY_KEYS:
             attr = getattr(self, key)
             if isinstance(attr, (datetime.timedelta, datetime.datetime)):
-                out[key] = str(attr)
+                out[key] = attr.seconds
             else:
                 out[key] = attr
 

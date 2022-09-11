@@ -97,7 +97,7 @@ class Generator:
         activities = (
             self.session.query(Activity)
             .filter(Activity.distance > 0.1)
-            .order_by(Activity.start_date_local)
+            .order_by(Activity.start_date)
         )
         activity_list = []
 
@@ -107,7 +107,7 @@ class Generator:
             # Determine running streak.
             if activity.type == "Run":
                 date = datetime.datetime.strptime(
-                    activity.start_date_local, "%Y-%m-%d %H:%M:%S"
+                    activity.start_date, "%Y-%m-%d %H:%M:%S"
                 ).date()
                 if last_date is None:
                     streak = 1
@@ -132,3 +132,10 @@ class Generator:
             # pass the error
             print(f"something wrong with {str(e)}")
             return []
+
+    def delete_activity_by_id(self, run_id):
+        try:
+            self.session.query(Activity).filter(Activity.run_id == run_id).delete()
+            self.session.commit()
+        except Exception as e:
+            return

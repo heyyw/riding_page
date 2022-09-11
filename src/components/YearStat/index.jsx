@@ -17,16 +17,18 @@ const YearStat = ({ year, onClick }) => {
   );
 
   if (years.includes(year)) {
-    runs = runs.filter((run) => run.start_date_local.slice(0, 4) === year);
+    runs = runs.filter((run) => run.start_date.slice(0, 4) === year);
   }
   let sumDistance = 0;
   let streak = 0;
+  let sumTime = 0;
   let pace = 0;
   let paceNullCount = 0;
   let heartRate = 0;
   let heartRateNullCount = 0;
   runs.forEach((run) => {
     sumDistance += run.distance || 0;
+    sumTime += parseInt(run.moving_time);
     if (run.average_speed) {
       pace += run.average_speed;
     } else {
@@ -55,9 +57,10 @@ const YearStat = ({ year, onClick }) => {
     >
       <section>
         <Stat value={year} description=" Journey" />
-        <Stat value={runs.length} description=" Runs" />
+        <Stat value={runs.length} description=" Rides" />
         <Stat value={sumDistance} description=" KM" />
-        <Stat value={avgPace} description=" Avg Pace" />
+        <Stat value={(sumTime/3600).toFixed(2)} description=" H" />
+        {/* <Stat value={avgPace} description=" Avg Pace" /> */}
         <Stat
           value={`${streak} day`}
           description=" Streak"
